@@ -37,8 +37,13 @@ class Runner {
 	@EventListener(ApplicationReadyEvent.class)
 	public void run() {
 
-		System.out.println("Rows added : " + this.bookDao.add("Effective Java Book", Reviews.EXCELLENT));
-		System.out.println("Rows added : " + this.bookDao.add("React 101", Reviews.GOOD));
+		try {
+			System.out.println("Rows added : " + this.bookDao.add("Effective Java Book", Reviews.EXCELLENT));
+			System.out.println("Rows added : " + this.bookDao.add("React 101", Reviews.GOOD));
+			System.out.println("Rows added : " + this.bookDao.add("", Reviews.BAD));
+		} catch (Exception e) {
+			System.err.println("Error : " + e.getMessage());
+		}
 
 		System.out.println(">>> Select All : ");
 		this.bookDao.findAll().forEach(System.out::println);
